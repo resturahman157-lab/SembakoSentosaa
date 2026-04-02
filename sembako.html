@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sembako Sentosa | Toko Digital Premium</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="header-container">
+            <div class="brand-section">
+                <div class="logo-toko">
+                    <img src="logo.png" alt="Logo" onerror="this.src='https://via.placeholder.com/50/2E7D32/FFFFFF?text=S'">
+                </div>
+                <div class="title-text">
+                    <h1>Sembako Sentosa</h1>
+                    <p>Segar • Hemat • Terpercaya</p>
+                </div>
+            </div>
+            <div class="nav-section">
+                <div class="cart-btn" id="cart-icon" onclick="bukaModal()">
+                    <i class="fas fa-shopping-basket"></i>
+                    <span id="count">0</span>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="hero-banner">
+        <h2>Belanja Sembako Tanpa Antre</h2>
+        <p>Pilih kebutuhan dapur Anda dan kami antar sampai depan pintu.</p>
+    </div>
+
+    <div class="container">
+        <div class="products">
+            <div class="product-card" id="item1">
+                <div class="badge">Terlaris</div>
+                <div class="img-container">
+                    <img src="beras.jpg" alt="Beras" onerror="this.src='https://images.unsplash.com/photo-1586201375761-83865001e31c?w=400'">
+                </div>
+                <h3>Beras Premium 5kg</h3>
+                <p class="price">Rp 75.000</p>
+                <button onclick="tambahKeKeranjang('Beras Premium 5kg', 75000, 'item1')">
+                    <i class="fas fa-plus"></i> Tambah
+                </button>
+            </div>
+
+            <div class="product-card" id="item2">
+                <div class="img-container">
+                    <img src="minyak.jpg" alt="Minyak" onerror="this.src='https://images.unsplash.com/photo-1474979266404-7eaacbadcbaf?w=400'">
+                </div>
+                <h3>Minyak Goreng 2L</h3>
+                <p class="price">Rp 34.000</p>
+                <button onclick="tambahKeKeranjang('Minyak Goreng 2L', 34000, 'item2')">
+                    <i class="fas fa-plus"></i> Tambah
+                </button>
+            </div>
+
+            <div class="product-card" id="item3">
+                <div class="img-container">
+                    <img src="telur.jpg" alt="Telur" onerror="this.src='https://images.unsplash.com/photo-1582722872445-41ea50bf5844?w=400'">
+                </div>
+                <h3>Telur Ayam 1kg</h3>
+                <p class="price">Rp 28.000</p>
+                <button onclick="tambahKeKeranjang('Telur Ayam 1kg', 28000, 'item3')">
+                    <i class="fas fa-plus"></i> Tambah
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <button onclick="downloadExcel()" class="btn-admin" title="Download Rekap Pesanan">
+        <i class="fas fa-file-excel"></i> Rekap Excel (CSV)
+    </button>
+
+    <div id="modal-bayar" class="modal">
+        <div class="modal-content-wrapper">
+            <span class="close-btn" onclick="tutupModal()">&times;</span>
+            
+            <div class="checkout-grid" id="checkout-grid">
+                <div class="checkout-summary">
+                    <h3><i class="fas fa-shopping-cart"></i> Detail Belanja</h3>
+                    <div id="daftar-belanja" class="scroll-list"></div>
+                    <div class="total-box">
+                        <small>Total Tagihan:</small>
+                        <h2 id="total-harga">Rp 0</h2>
+                    </div>
+                </div>
+
+                <div class="checkout-form">
+                    <h3><i class="fas fa-truck"></i> Informasi Pengiriman</h3>
+                    <form id="form-pesanan" onsubmit="prosesBayar(event)">
+                        <div class="input-group">
+                            <label>Nama Penerima</label>
+                            <input type="text" id="input-nama" placeholder="Masukkan nama lengkap" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Alamat Pengiriman</label>
+                            <textarea id="input-alamat" placeholder="Jl. Merdeka No. 1, Kota..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn-final">Konfirmasi & Pesan</button>
+                    </form>
+                </div>
+            </div>
+
+            <div id="success-page" class="success-view" style="display: none;">
+                <i class="fas fa-check-circle check-anim"></i>
+                <h2>Pesanan Berhasil!</h2>
+                <p>Data Anda telah tersimpan. Pesanan akan segera diproses.</p>
+                <div class="order-id">ID: <span id="res-id"></span></div>
+                <br>
+                <button class="btn-reset" onclick="selesaiBelanja()">Belanja Lagi</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
